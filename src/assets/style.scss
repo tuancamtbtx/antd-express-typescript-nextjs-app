@@ -1,0 +1,30 @@
+html {
+    width: 100%;
+}
+
+body {
+    width: 100%;
+}
+
+.ant-modal-title {
+    display: block;
+    display: -webkit-box;
+    max-width: calc(100% - 24px);
+    max-height: 44px;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.ellipses {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.animation-duration-5s {
+    animation-duration: 1s !important;
+    animation-delay: 1s !important;
+    animation-iteration-count: 2.5;
+}

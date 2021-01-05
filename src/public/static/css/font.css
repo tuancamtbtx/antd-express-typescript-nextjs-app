@@ -1,0 +1,37 @@
+@font-face {
+    font-family: 'Bookerly';
+    font-weight: 400;
+    src: url('https://tungtung-space.sgp1.digitaloceanspaces.com/static/community/fonts/bookerly/subset-Bookerly-Regular.woff2')
+            format('woff2'),
+        url('https://tungtung-space.sgp1.digitaloceanspaces.com/static/community/fonts/bookerly/subset-Bookerly-Regular.woff')
+            format('woff');
+}
+
+@font-face {
+    font-family: 'Bookerly';
+    font-weight: 400;
+    font-style: italic;
+    src: url('https://tungtung-space.sgp1.digitaloceanspaces.com/static/community/fonts/bookerly/subset-Bookerly-Italic.woff2')
+            format('woff2'),
+        url('https://tungtung-space.sgp1.digitaloceanspaces.com/static/community/fonts/bookerly/subset-Bookerly-Italic.woff')
+            format('woff');
+}
+
+@font-face {
+    font-family: 'Bookerly';
+    font-weight: 600;
+    src: url('https://tungtung-space.sgp1.digitaloceanspaces.com/static/community/fonts/bookerly/subset-Bookerly-Bold.woff2')
+            format('woff2'),
+        url('https://tungtung-space.sgp1.digitaloceanspaces.com/static/community/fonts/bookerly/subset-Bookerly-Bold.woff')
+            format('woff');
+}
+
+@font-face {
+    font-family: 'Bookerly';
+    font-weight: 600;
+    font-style: italic;
+    src: url('https://tungtung-space.sgp1.digitaloceanspaces.com/static/community/fonts/bookerly/subset-Bookerly-BoldItalic.woff2')
+            format('woff2'),
+        url('https://tungtung-space.sgp1.digitaloceanspaces.com/static/community/fonts/bookerly/subset-Bookerly-BoldItalic.woff')
+            format('woff');
+}
