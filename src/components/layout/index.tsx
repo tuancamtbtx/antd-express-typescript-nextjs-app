@@ -1,96 +1,95 @@
-import { Component } from 'react';
-import { Layout, Menu, Breadcrumb } from 'antd';
-import Link from 'next/link';
-import { withRouter } from 'next/router'
-
+import React, { memo, ReactNode, useState } from 'react';
+import { LayoutWrapper, ContentWrapper, LogoWrapper } from 'src/components/wrapper'
+import { Layout, Menu } from 'antd';
+import Head from 'next/head'
+import UserDropDown from './user-dropdown'
+const { Header, Sider, Content, Footer } = Layout
+import { useRouter } from 'next/router'
+import Link from 'src/components/link'
 import {
-    TeamOutlined,
-} from '@ant-design/icons'
+  MenuFoldOutlined,
+  MenuUnfoldOutlined,
+  UserOutlined,
+  ApartmentOutlined
+}
+  from '@ant-design/icons'
 
-import './Layout.less';
-
-const { Item } = Menu;
-const { Sider, Content } = Layout;
-
-interface Props {
-    router: any
+type IProps = {
+  title?: string,
+  children?: ReactNode,
+  activeMenuKey?: string
 }
 
-function itemRender(route: any, params: any, routes: any, paths: string[]) {
-    return route.path === 'index' ? (
-        <Link href={'/'}><a>{route.breadcrumbName}</a></Link>
-    ) : (
-            <span>{route.breadcrumbName}</span>
-        );
-}
+const BaseLayout: React.FC<IProps> = memo(({ title, activeMenuKey, children }: IProps) => {
+  const [collapsed, setCollapsed] = useState(false)
+  const router = useRouter()
+  return (
+    <LayoutWrapper>
+      <Head>
+        <title>{title} | ZMD CMS</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </Head>
+      <Layout>
+        <Header id='headerNav'>
+          <div style={{ 'display': 'flex', flexDirection: 'row', alignContent: 'center', alignItems: 'center' }}>
+            <div style={{
+              color: '#fff',
+              fontSize: '18px',
+              lineHeight: '64px',
+              padding: '0 24px',
+              cursor: 'pointer',
+              transition: 'color 0.3s',
+            }}>
+              {collapsed ?
+                <MenuUnfoldOutlined
+                  className="trigger"
+                  onClick={() => setCollapsed(false)} /> :
+                <MenuFoldOutlined className="trigger"
+                  onClick={() => setCollapsed(true)} />}
+            </div>
+            <LogoWrapper>
+              <img src='/static/images/log.png' />
+            </LogoWrapper>
+          </div>
+          <UserDropDown username="Tuấn Cám" avatar="https://lh3.googleusercontent.com/ogw/ADGmqu_t6ocQYu86ewBqgpoKp35oKKv8l98N6RpyzL_L=s32-c-mo" />
+        </Header>
+        <Layout style={{ marginTop: '1px' }}>
+          <Sider theme="light" trigger={null} collapsible collapsed={collapsed} style={{ padding: '0px' }}>
+            <Menu selectedKeys={[activeMenuKey]} theme="light" mode="inline" >
+              <Menu.ItemGroup key="g1" title="Administration">
+                <Menu.Item key="/users">
+                  <Link path='/users'>
+                    <a>
+                      <UserOutlined />
+                      <span className='nav-text'>Users</span>
+                    </a>
+                  </Link>
+                </Menu.Item>
+                <Menu.Item key="/permissions">
+                  <Link path='/permissions'>
+                    <a>
+                      <ApartmentOutlined />
+                      <span className='nav-text'>Permissions</span>
+                    </a>
+                  </Link>
 
-function routesMaker(pathsplit: string[]) {
-    let routes = [
-        {
-            path: 'index',
-            breadcrumbName: 'home',
-        }
-    ];
-    for (let v of pathsplit) {
-        const pathInfo = {
-            path: v,
-            breadcrumbName: v,
-        }
-        if (v !== "") routes.push(pathInfo)
-    }
-    return routes
-}
-
-class AppLayout extends Component<Props> {
-    state = {
-        collapsed: false,
-    };
-
-    onCollapse = (collapsed: boolean) => {
-        this.setState({ collapsed });
-    };
-
-    render() {
-        const pathname = this.props.router.pathname;
-        const pathsplit: string[] = pathname.split('/');
-        const routes = routesMaker(pathsplit);
-        return (
-            <Layout style={{ minHeight: '100vh' }}>
-                <Sider
-                    theme={'light'}
-                    collapsible collapsed={this.state.collapsed}
-                    onCollapse={this.onCollapse}
-                >
-                    <Link href="/users">
-                        <a><div className="App-logo" /></a>
-                    </Link>
-                    <Menu
-                        theme="light"
-                        defaultSelectedKeys={['/users']}
-                        selectedKeys={[pathsplit.pop()]}
-                        defaultOpenKeys={[pathsplit[1]]}
-                        mode="inline">
-                        <Item key="users" icon={<TeamOutlined />}>
-                            <Link href="/"><a>Users</a></Link>
-                        </Item>
-                    </Menu>
-                </Sider>
-                <Layout style={{ padding: '0 16px 16px' }}>
-                    <Breadcrumb style={{ margin: '16px 0' }} itemRender={itemRender} routes={routes} />
-                    <Content
-                        className="site-layout-background"
-                        style={{
-                            padding: 16,
-                            minHeight: 280,
-                            backgroundColor: '#ffffff',
-                        }}
-                    >
-                        {this.props.children}
-                    </Content>
-                </Layout>
-            </Layout>
-        )
-    }
-}
-
-export default withRouter(AppLayout)
+                </Menu.Item>
+              </Menu.ItemGroup>
+            </Menu>
+          </Sider>
+          <Layout style={{ marginTop: '1px' }}>
+            <Content style={{ overflow: 'initial', minHeight: '100vh' }}>
+              <ContentWrapper>
+                {children}
+              </ContentWrapper>
+            </Content>
+            <Footer style={{ textAlign: 'center' }}>
+              ©  {new Date().getFullYear()}
+            </Footer>
+          </Layout>
+        </Layout>
+      </Layout>
+    </LayoutWrapper>
+  )
+})
+export default BaseLayout

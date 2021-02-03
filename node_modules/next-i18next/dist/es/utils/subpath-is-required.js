@@ -1,0 +1,1 @@
+export const subpathIsRequired = (config, language) => typeof config.localeSubpaths[language] === 'string';

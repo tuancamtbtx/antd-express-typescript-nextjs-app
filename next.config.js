@@ -1,19 +1,21 @@
-const withLess = require('@zeit/next-less')
-const withSass = require('@zeit/next-sass')
-const lessToJS = require('less-vars-to-js')
+/* eslint-disable */
+const withLess = require('@zeit/next-less');
+const lessToJS = require('less-vars-to-js');
+const withSass = require('@zeit/next-sass');
+const withCSS = require('@zeit/next-css');
+
 const fs = require('fs')
 const path = require('path')
-// const Dotenv = require('dotenv-webpack')
 
 // Where your antd-custom.less file lives
 const themeVariables = lessToJS(
-  fs.readFileSync(path.resolve(__dirname, './assets/antd-custom.less'), 'utf8')
+  fs.readFileSync(path.resolve(__dirname, './src/assets/antd-custom.less'), 'utf8')
 )
 
-module.exports = withSass(withLess({
+module.exports = withCSS(withSass(withLess({
   lessLoaderOptions: {
     javascriptEnabled: true,
-    modifyVars: themeVariables // make your antd custom effective
+    modifyVars: themeVariables, // make your antd custom effective
   },
   webpack: (config, { isServer }) => {
     if (isServer) {
@@ -28,27 +30,15 @@ module.exports = withSass(withLess({
             callback()
           }
         },
-        ...(typeof origExternals[0] === 'function' ? [] : origExternals)
+        ...(typeof origExternals[0] === 'function' ? [] : origExternals),
       ]
 
       config.module.rules.unshift({
         test: antStyles,
-        use: 'null-loader'
+        use: 'null-loader',
       })
     }
-
-    config.plugins = config.plugins || []
-
-    config.plugins = [
-      ...config.plugins
-
-      // Read the .env file
-      // new Dotenv({
-      //   path: path.join(__dirname, '.env'),
-      //   systemvars: true
-      // })
-    ]
-
     return config
-  }
-}))
+  },
+})
+))

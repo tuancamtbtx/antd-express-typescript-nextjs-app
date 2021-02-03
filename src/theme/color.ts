@@ -1,15 +1,15 @@
-const PRIMARY: string = '#038fde';
+const PRIMARY: string = "#6a39af";
 
 const TEXT: any = {
-    PRIMARY,
+  PRIMARY,
 };
 
 const SHAPE: any = {
-    PRIMARY,
+  PRIMARY,
 };
 
 export default {
-    PRIMARY,
-    TEXT,
-    SHAPE,
+  PRIMARY,
+  TEXT,
+  SHAPE,
 };

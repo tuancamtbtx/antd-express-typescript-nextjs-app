@@ -1,18 +1,17 @@
-import { NextPageContext } from "next";
+import React from 'react'
+import ErrorPage from 'src/components/error'
 
-const Error = ({ statusCode }) => {
+function Error({ statusCode }) {
   return (
-    <p>
-      {statusCode
-        ? `An error ${statusCode} occurred on server`
-        : "An error occurred on client"}
-    </p>
-  );
-};
+    <ErrorPage statusCode={statusCode} />
+  )
+}
 
-Error.getInitialProps = ({ res, err }: NextPageContext) => {
-  const statusCode = res ? res.statusCode : err ? err.statusCode : 404;
-  return { statusCode };
-};
+Error.getInitialProps = ({ res, err }) => {
+  const statusCode = res ? (res.statusCode) : (err ? err.statusCode : 404)
+  return {
+    statusCode
+  }
+}
 
-export default Error;
+export default Error

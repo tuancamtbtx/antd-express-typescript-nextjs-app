@@ -1,14 +1,22 @@
 import React from 'react';
 import Head from 'next/head';
+import { Result, Button } from 'antd';
+import dynamic from 'next/dynamic';
+const AppLayout = dynamic(() => import('src/components/layout'), { ssr: false });
 
 const NotFoundPage: React.FC = () => {
-    return (<div>
-        <Head>
-            <title>ZMD - ADMIN</title>
-            <meta name="viewport" content="width=device-width, initial-scale=1" />
-        </Head>
-        <div>404 Not Found</div>
-    </div>);
+    return (
+        <AppLayout title="Page Not Found" >
+            <Head>
+                <meta name="viewport" content="width=device-width, initial-scale=1" />
+            </Head>
+            <Result
+                status="404"
+                title="404"
+                subTitle="Sorry, the page you visited does not exist."
+                extra={<Button type="primary">Back Home</Button>}
+            />
+        </AppLayout>);
 
 }
 export default NotFoundPage;
