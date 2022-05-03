@@ -1,8 +1,7 @@
 import React from 'react';
 import { Card } from 'antd'
 import UserContainer from 'src/containers/users'
-import dynamic from 'next/dynamic';
-const AppLayout = dynamic(() => import('src/components/layout'), { ssr: true });
+import AppLayout from 'src/components/layout'
 export default function App() {
     return (
         <AppLayout title={"Users"} activeMenuKey="/users">

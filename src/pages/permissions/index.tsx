@@ -1,8 +1,7 @@
 import React from 'react';
 import { Card } from 'antd'
 import PermissionContainer from 'src/containers/permission'
-import dynamic from 'next/dynamic';
-const AppLayout = dynamic(() => import('src/components/layout'), { ssr: false });
+import AppLayout from 'src/components/layout'
 
 export default function App() {
     return (

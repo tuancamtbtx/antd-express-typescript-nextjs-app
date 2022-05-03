@@ -3,8 +3,8 @@ import styled from 'styled-components'
 export const ContentWrapper = styled.div`
   box-shadow: 0px 1px 3px rgba(194, 194, 194, 0.2);
   background-color: #fff;
-  border-radius: 4px;
-  margin: 16px;
+  border-radius: 8px;
+  margin: 12px;
   .ant-table-wrapper {
     margin: 16px;
   }
@@ -29,41 +29,45 @@ export const HeaderWrapper = styled.div`
 
 export const LayoutWrapper = styled.div`
   .nav-text {
-    color: black;
+    color: #ecf0f1;
+    font-weight: 500;
   }
   .ant-menu-inline {
     border-right: 0px;
   }
   .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
-    background-color: #f1ecf2ab;
-    color: red;
-  }
-  .ant-layout-sider {
+    background-color: black;
+    color: white;
+    font-weight: 700;
   }
   .ant-menu-item-group-title  {
-    color: #000;
-    font-weight: 700;
-    font-size: 16px;
-    padding-top: 24px!important;
+    color: white;
+    font-weight: 600;
+    font-size: 14px;
+    padding-top: 1px!important;
   }
   #headerNav {
-    padding: 0px 16px;
+    margin-top: -1px;
+    padding: 0px 12px;
     height: inherit;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #ffffff;
+    background-color: #001529;
     box-shadow: 0 1px 3px rgba(18,18,18,.1);
     .ant-menu-horizontal {
       border-bottom: 0px;
     }
   }
   .ant-menu-item {
-    font-weight: 700;
+    margin-top: -8px;
+    padding: -2px;
+    font-weight: 500;
+    font-size: 14px;
   }
   .anticon {
-    color: #2c3e50;
-    font-size: 16px;
+    color: white;
+    font-size: 12px;
   }
   .fullname {
     color: #000;
@@ -71,11 +75,10 @@ export const LayoutWrapper = styled.div`
   }
 `
 export const LogoWrapper = styled.div`
+    display: flex;
+    justify-content: flex-start;
     img {
-      width: 72px;
-      height: 36px;
-     margin: 16px 28px 16px 0;
-     float: left;
+      max-width: 40px;
+      max-height: 40px;
     }
-  
 `

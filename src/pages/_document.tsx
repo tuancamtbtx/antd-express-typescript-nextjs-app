@@ -1,29 +1,20 @@
+// import { createEnvsFromList } from 'env';
+import Document, { Head, Html, Main, NextScript } from 'next/document';
+import { createEnvsFromList } from 'env';
 
-import Document, { Html, DocumentContext, Main, NextScript, Head } from 'next/document'
-import { ServerStyleSheet } from 'styled-components'
-
-export default class MyDocument extends Document<any> {
-    static async getInitialProps(ctx: DocumentContext) {
-        const initialProps = await Document.getInitialProps(ctx)
-        const sheet = new ServerStyleSheet()
-        const page = ctx.renderPage(App => props =>
-            sheet.collectStyles(<App {...props} />)
-        )
-        const styleTags = sheet.getStyleElement()
-        return { ...initialProps, ...page, styleTags }
-    }
-    render() {
-        return (
-            <Html>
-                <Head>
-                    <link rel='shortcut icon' href='https://image.freepik.com/free-vector/wolf-logo-icon_9880-24.jpg' />
-                    {this.props.styleTags}
-                </Head>
-                <body>
-                    <Main />
-                    <NextScript />
-                </body>
-            </Html>
-        )
-    }
+export default class MyDocument extends Document {
+  render(): JSX.Element {
+    const scriptEnv = `window.__ENV__ = ${JSON.stringify(createEnvsFromList())}`;
+    return (
+      <Html lang="vi">
+        <Head>
+          <script dangerouslySetInnerHTML={{ __html: scriptEnv }} />
+        </Head>
+        <body>
+          <Main />
+          <NextScript />
+        </body>
+      </Html>
+    );
+  }
 }

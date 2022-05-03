@@ -19,34 +19,20 @@ const data: IUserInfo[] = [
 
     },
     {
-        key: '2',
-        name: 'Nguyễn Cao Minh Khánh',
-        status: 'Approve',
-        domain: 'khanhncm',
-
-        permissionClient: 'VIEW_USER',
-        permissionAPI: 'GET_USER_API'
-
-    },
-    {
         key: '3',
         name: 'Dương Trọng Nghĩa',
         status: 'Approve',
         domain: 'nghiadt4',
-
         permissionClient: 'VIEW_USER',
         permissionAPI: 'GET_USER_API'
-
     },
     {
         key: '4',
         name: 'Đỗ Đăng Khôi',
         status: 'Rejected',
         domain: 'khoidd',
-
         permissionClient: 'VIEW_USER',
         permissionAPI: 'GET_USER_API'
-
     },
 ];
 const columns: any[] = [

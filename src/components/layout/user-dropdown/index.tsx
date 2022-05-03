@@ -1,7 +1,7 @@
 // export const name: string = 'user-dropdown';
 import React, { ReactNode } from 'react'
 import styled from 'styled-components'
-import { Menu, Dropdown } from 'antd'
+import { Menu, Dropdown, message } from 'antd'
 import { LogoutOutlined, DownOutlined, EditOutlined } from '@ant-design/icons'
 const Wrapper = styled.a`
   display: flex;
@@ -12,9 +12,9 @@ const Wrapper = styled.a`
     border-radius: 6px;
     margin-right: 8px;
   }
-  .username {
+  .fullname {
     font-weight: 700;
-    color: #2c3e50;
+    color: white;
     margin-right: 4px;
   }
 `
@@ -23,7 +23,7 @@ type IUserProps = {
     avatar: string
 }
 
-const menu: any = (
+const menu = (
     <Menu>
         <Menu.Item>
             <a target='_blank' rel='noopener noreferrer'>
@@ -43,8 +43,8 @@ const UserDropDown: React.FC<IUserProps> = ({ username, avatar }: IUserProps) =>
     return (
         <Dropdown overlay={menu}>
             <Wrapper className='ant-dropdown-link' href='#'>
-                <img src={avatar} alt={username} />
-                <span className='fullname'>{username}</span>
+                <img src={avatar ? avatar : "https://dongphucsongphu.com/logo-tiki-dongphucsongphu-02.png"} alt={username} />
+                <span className='fullname'>{username? username : "Tiki Dev"}</span>
                 <DownOutlined />
             </Wrapper>
         </Dropdown>
